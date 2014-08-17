@@ -40,9 +40,3 @@ r1.save(r1.attributes, {
 		console.log(model);
 	}
 });
-
-var RobotCollection = Backbone.Collection.extend({
-	model: Robot
-});
-
-myRobots = new RobotCollection([r1, r2, r3]);
