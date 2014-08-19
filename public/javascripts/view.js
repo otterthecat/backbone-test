@@ -23,12 +23,14 @@ var RobotView = Backbone.View.extend({
 // the above RobotView
 var RobotCollectionView = Backbone.View.extend({
 
-	// target element in which to update view
-	el: $('#robots'),
-
-	// tag name to be auto inserted to the above el
+	// tag name to be auto inserted to the below target.
 	// if we didn't define it, would default to a div
 	tagName: 'ul',
+
+	// custom attribute (not part of Backbone API)
+	// to denote which element on the page we want
+	// to insert our views into
+	target: $('#robots'),
 
 	render: function(collection){
 
@@ -38,6 +40,7 @@ var RobotCollectionView = Backbone.View.extend({
 			this.$el.append(roboTemplate.render(robot).el);
 		}.bind(this));
 
+		this.target.append(this.el);
 		// return view for chaining
 		return this;
 	}
