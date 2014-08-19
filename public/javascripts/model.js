@@ -30,13 +30,16 @@ var Robot = Backbone.Model.extend({
 	}
 });
 
-var r1 = new Robot();
-var r2 = new Robot({name: 'z0b0', firepower: 'mega taser'});
-var r3 = new Robot({name: 'r9d4', armor: 'tin', firepower: 'potato gun'});
+// commenting out in favor of using collection
+// to generate multiple robots - see collection.js
+//
+// var r1 = new Robot();
+// var r2 = new Robot({name: 'z0b0', firepower: 'mega taser'});
+// var r3 = new Robot({name: 'r9d4', armor: 'tin', firepower: 'potato gun'});
 
-r1.save(r1.attributes, {
-	success: function(model){
-		console.log('saved this model:');
-		console.log(model);
-	}
-});
+// r1.save(r1.attributes, {
+// 	success: function(model){
+// 		console.log('saved this model:');
+// 		console.log(model);
+// 	}
+// });

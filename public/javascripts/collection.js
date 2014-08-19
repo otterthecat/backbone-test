@@ -1,5 +1,6 @@
 var RobotCollection = Backbone.Collection.extend({
-	model: Robot
+	model: Robot,
+	url: '/robots'
 });
 
-myRobots = new RobotCollection([r1, r2, r3]);
+myRobots = new RobotCollection();

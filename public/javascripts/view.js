@@ -49,4 +49,15 @@ var RobotCollectionView = Backbone.View.extend({
 var robotColletionView = new RobotCollectionView();
 
 // 'myRobots collection from courtesy of collection.js
-robotColletionView.render(myRobots);
+// using fetch, it pings the server which returns a json object
+// representing an array of robots. When returned, it populates
+// robotCollection which then implements the collectionView
+myRobots.fetch({
+	success: function(collection){
+		robotColletionView.render(collection);
+	},
+	error: function(err){
+		console.error("Whoah! Got and error!");
+		console.log(err);
+	}
+});
