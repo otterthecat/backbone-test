@@ -19,7 +19,7 @@ var Robot = Backbone.Model.extend({
 		});
 
 		this.on('change:firepower', function(model){
-			conosle.log('now equipped with %s', model.get('firepower'));
+			console.log('now equipped with %s', model.get('firepower'));
 		});
 
 		this.on('change:id', function(model){
