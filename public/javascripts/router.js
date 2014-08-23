@@ -17,8 +17,7 @@ robotRouter.on('route:roar', function(){
 Backbone.history.start({pushState: true});
 
 var links = document.querySelectorAll('a');
-console.log("LINKS!");
-console.log(links);
+
 links[0].addEventListener('click', function(e){
 	e.preventDefault();
 	robotRouter.navigate('r2', {trigger: true});
