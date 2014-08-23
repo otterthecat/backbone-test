@@ -11,7 +11,7 @@ var Robot = Backbone.Model.extend({
 	initialize: function(){
 
 		this.on('change:name', function(model){
-			console.log("my name as been assigned as %s", model.get('name'));
+			console.log("my name has been assigned as %s", model.get('name'));
 		});
 
 		this.on('change:armor', function(model){

@@ -7,23 +7,23 @@ var RobotRouter = Backbone.Router.extend({
 
 var robotRouter = new RobotRouter();
 robotRouter.on('route:beep', function(){
-	console.log('I forgot how to fly in the later movies');
+	myRobots.get(2).set({name: 'R2-D2'});
+	myRobots.get(3).set({name: 'johnny 5'});
 });
 
 robotRouter.on('route:roar', function(){
-	console.log('Use Laser Sword!!');
+	myRobots.get(2).set({name:'t1000'});
+	myRobots.get(3).set({name: 'Red Lion'});
 });
 
 Backbone.history.start({pushState: true});
 
 var links = document.querySelectorAll('a');
-
-links[0].addEventListener('click', function(e){
+var linkHandler = function(e){
 	e.preventDefault();
-	robotRouter.navigate('r2', {trigger: true});
-});
+	var path = e.target.href.replace('http://localhost:3000', '');
+	robotRouter.navigate(path, {trigger: true});
+};
 
-links[1].addEventListener('click', function(e){
-	e.preventDefault();
-	robotRouter.navigate('voltron/lions', {trigger: true});
-});
+links[0].addEventListener('click', linkHandler);
+links[1].addEventListener('click', linkHandler);
