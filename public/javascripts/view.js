@@ -34,7 +34,9 @@ var RobotCollectionView = Backbone.View.extend({
 
 	render: function(collection){
 
-		collection.each(function(robot){
+		this.collection = this.collection || collection;
+		this.$el.html('');
+		this.collection.each(function(robot){
 
 			var roboTemplate = new RobotView();
 			this.$el.append(roboTemplate.render(robot).el);
@@ -46,7 +48,7 @@ var RobotCollectionView = Backbone.View.extend({
 	}
 });
 
-var robotColletionView = new RobotCollectionView();
+var robotCollectionView = new RobotCollectionView();
 
 // 'myRobots collection from courtesy of collection.js
 // using fetch, it pings the server which returns a json object
@@ -54,10 +56,13 @@ var robotColletionView = new RobotCollectionView();
 // robotCollection which then implements the collectionView
 myRobots.fetch({
 	success: function(collection){
-		robotColletionView.render(collection);
+		robotCollectionView.render(myRobots);
+		console.log("ROBOT ARMY IS READY");
 	},
 	error: function(err){
 		console.error("Whoah! Got and error!");
 		console.log(err);
 	}
 });
+
+robotCollectionView.listenTo(myRobots, 'change', robotCollectionView.render);
