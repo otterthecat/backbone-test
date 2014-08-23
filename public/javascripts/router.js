@@ -1,11 +1,25 @@
 var RobotRouter = Backbone.Router.extend({
 	routes: {
+		'': 'index',
 		'r2': 'beep',
 		'voltron/lions': 'roar'
 	}
 });
 
 var robotRouter = new RobotRouter();
+robotRouter.on('route:index', function(){
+	myRobots.fetch({
+		success: function(collection){
+			robotCollectionView.render(myRobots);
+			console.log("ROBOT ARMY IS READY");
+		},
+		error: function(err){
+			console.error("Whoah! Got and error!");
+			console.log(err);
+		}
+	});
+});
+
 robotRouter.on('route:beep', function(){
 	myRobots.get(2).set({name: 'R2-D2'});
 	myRobots.get(3).set({name: 'johnny 5'});
@@ -24,6 +38,18 @@ var linkHandler = function(e){
 	var path = e.target.href.replace('http://localhost:3000', '');
 	robotRouter.navigate(path, {trigger: true});
 };
+
+// myRobots.fetch({
+// 	success: function(collection){
+// 		robotCollectionView.render(myRobots);
+// 		console.log("ROBOT ARMY IS READY");
+// 	},
+// 	error: function(err){
+// 		console.error("Whoah! Got and error!");
+// 		console.log(err);
+// 	}
+// });
+robotCollectionView.listenTo(myRobots, 'change', robotCollectionView.render);
 
 links[0].addEventListener('click', linkHandler);
 links[1].addEventListener('click', linkHandler);
