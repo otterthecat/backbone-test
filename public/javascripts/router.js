@@ -39,16 +39,6 @@ var linkHandler = function(e){
 	robotRouter.navigate(path, {trigger: true});
 };
 
-// myRobots.fetch({
-// 	success: function(collection){
-// 		robotCollectionView.render(myRobots);
-// 		console.log("ROBOT ARMY IS READY");
-// 	},
-// 	error: function(err){
-// 		console.error("Whoah! Got and error!");
-// 		console.log(err);
-// 	}
-// });
 robotCollectionView.listenTo(myRobots, 'change', robotCollectionView.render);
 
 links[0].addEventListener('click', linkHandler);
