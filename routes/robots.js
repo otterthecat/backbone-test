@@ -1,10 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-// router.param('id', function(req, res, next, id){
-// 	next();
-// });
-
 /* GET all robots */
 router.get('/', function(req, res){
 

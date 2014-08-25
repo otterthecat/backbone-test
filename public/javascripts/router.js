@@ -39,7 +39,17 @@ var linkHandler = function(e){
 	robotRouter.navigate(path, {trigger: true});
 };
 
-robotCollectionView.listenTo(myRobots, 'change', robotCollectionView.render);
+var renderRobots = function(){
+	robotCollectionView.render(myRobots);
+};
+
+robotCollectionView.listenTo(myRobots, 'change', renderRobots);
+robotCollectionView.listenTo(myRobots, 'add', renderRobots);
 
 links[0].addEventListener('click', linkHandler);
 links[1].addEventListener('click', linkHandler);
+
+document.querySelector('button').addEventListener('click', function(e){
+	e.preventDefault();
+	myRobots.add(new Robot({name: 'borg', firepower: 'many'}));
+});

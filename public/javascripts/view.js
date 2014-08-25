@@ -34,8 +34,10 @@ var RobotCollectionView = Backbone.View.extend({
 
 	render: function(collection){
 
-		this.collection = this.collection || collection;
+		this.collection = collection;
 		this.$el.html('');
+		console.log('collection: ');
+		console.log(this);
 		this.collection.each(function(robot){
 
 			var roboTemplate = new RobotView();
