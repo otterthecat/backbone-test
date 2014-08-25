@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.param('id', function(req, res, next, id){
-	next();
-});
+// router.param('id', function(req, res, next, id){
+// 	next();
+// });
 
 /* GET all robots */
 router.get('/', function(req, res){
@@ -31,11 +31,20 @@ router.get('/', function(req, res){
 
 /* GET users listing. */
 router.get('/:id', function(req, res) {
+
+  // return false model with ID of 1
   res.json({
     	id: 1,
     	name: 'hal 9000',
     	firepower: 'sentient ray'
     });
+});
+
+router.put('/:id', function(req, res){
+
+	// for testing, just send back whatever
+	// the saved data was
+	res.json(req.body);
 });
 
 router.post('/', function(req, res){
