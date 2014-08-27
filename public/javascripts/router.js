@@ -7,10 +7,15 @@ var RobotRouter = Backbone.Router.extend({
 });
 
 var robotRouter = new RobotRouter();
+var renderRobots = function(){
+	robotCollectionView.render(myRobots);
+};
 robotRouter.on('route:index', function(){
 	myRobots.fetch({
 		success: function(collection){
 			robotCollectionView.render(myRobots);
+			robotCollectionView.listenTo(myRobots, 'change', renderRobots);
+			robotCollectionView.listenTo(myRobots, 'add', renderRobots);
 			console.log("ROBOT ARMY IS READY");
 		},
 		error: function(err){
@@ -38,13 +43,6 @@ var linkHandler = function(e){
 	var path = e.target.href.replace('http://localhost:3000', '');
 	robotRouter.navigate(path, {trigger: true});
 };
-
-var renderRobots = function(){
-	robotCollectionView.render(myRobots);
-};
-
-robotCollectionView.listenTo(myRobots, 'change', renderRobots);
-robotCollectionView.listenTo(myRobots, 'add', renderRobots);
 
 links[0].addEventListener('click', linkHandler);
 links[1].addEventListener('click', linkHandler);
