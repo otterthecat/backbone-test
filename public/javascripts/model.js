@@ -29,3 +29,28 @@ var Robot = Backbone.Model.extend({
 		console.log("%s has been manufactured. beep. boop.", this.get('name'));
 	}
 });
+
+// this code is just a sketchpad to hash out some ideas
+var Foo = Backbone.Model.extend({
+	initialize: function (){
+
+		this.stuff = 'a string with stuff';
+	},
+
+
+	parse: function (data, options){
+		console.log('options', options)
+		var parsedData = {};
+
+		parsedData.bar = data.x * 10;
+		parsedData.things = this.stuff;
+		if(typeof options !== 'undefined'){
+			parsedData.url = options.url;
+		}
+		return parsedData;
+	}
+});
+
+var foo1 = new Foo({x : 3}, {parse: true, url: 'www.fake.com'});
+var foo2 = new Foo();
+foo2.set(foo2.parse({x : 2}));
